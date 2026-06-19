@@ -52,8 +52,6 @@ document.addEventListener('DOMContentLoaded', () => { fixImageFallbacks();
                     parent.style.backgroundImage = `url(${src})`;
                     parent.style.backgroundSize = 'cover';
                     parent.style.backgroundPosition = 'center';
-                    // hide the img element to avoid stacking/layout issues
-                    img.style.display = 'none';
                 }
             }
         });

@@ -490,15 +490,22 @@ section {
 .ba-stack {
     display: grid;
     gap: 30px;
+    opacity: 1;
+    transform: none;
+    visibility: visible;
 }
 
 .ba-container {
+    width: 100%;
     max-width: 1000px;
     margin: 0 auto;
     position: relative;
     height: 550px;
+    min-height: 360px;
     overflow: hidden;
     border-radius: 4px;
+    background: #15181d;
+    border: 1px solid rgba(255, 255, 255, 0.06);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
@@ -526,7 +533,8 @@ section {
     opacity: 1;
     transform: none;
     visibility: visible;
-    outline: 3px solid rgba(255,0,0,0.6); /* debug: shows if image has layout */
+    position: relative;
+    z-index: 1;
 }
 
 .ba-after {
@@ -539,6 +547,7 @@ section {
 .ba-label {
     position: absolute;
     top: 30px;
+    z-index: 6;
     padding: 8px 20px;
     background: rgba(7, 8, 10, 0.8);
     font-size: 0.75rem;
