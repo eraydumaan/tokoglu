@@ -121,27 +121,6 @@ filters.forEach((filterButton) => {
     });
 });
 
-document.querySelectorAll(".ba-container").forEach((container) => {
-    const sliderInput = container.querySelector(".ba-scroller");
-    const baAfter = container.querySelector(".ba-after");
-    const baHandle = container.querySelector(".ba-handle");
-
-    if (sliderInput && baAfter && baHandle) {
-        const update = (val) => {
-            baAfter.style.width = `${val}%`;
-            baHandle.style.left = `${val}%`;
-        };
-        // initialize based on current value
-        update(sliderInput.value);
-        sliderInput.addEventListener("input", (e) => {
-            update(e.target.value);
-        });
-        // ensure images are visible in case observer delayed them
-        const imgs = container.querySelectorAll('img');
-        imgs.forEach(i=>{ i.style.opacity='1'; i.style.visibility='visible'; });
-    }
-});
-
 const stepItems = document.querySelectorAll(".step-item");
 const processImages = document.querySelectorAll(".process-img");
 
