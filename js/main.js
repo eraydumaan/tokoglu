@@ -41,7 +41,24 @@ function fixImageFallbacks() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', fixImageFallbacks);
+document.addEventListener('DOMContentLoaded', () => { fixImageFallbacks();
+    // Set BA container backgrounds from img src as a robust fallback
+    setTimeout(() => {
+        document.querySelectorAll('.ba-img').forEach(parent => {
+            const img = parent.querySelector('img');
+            if (img) {
+                const src = img.getAttribute('src');
+                if (src) {
+                    parent.style.backgroundImage = `url(${src})`;
+                    parent.style.backgroundSize = 'cover';
+                    parent.style.backgroundPosition = 'center';
+                    // hide the img element to avoid stacking/layout issues
+                    img.style.display = 'none';
+                }
+            }
+        });
+    }, 300);
+});
 
 
 const observer = new IntersectionObserver((entries) => {
