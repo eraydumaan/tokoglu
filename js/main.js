@@ -122,11 +122,18 @@ document.querySelectorAll(".ba-container").forEach((container) => {
     const baHandle = container.querySelector(".ba-handle");
 
     if (sliderInput && baAfter && baHandle) {
-        sliderInput.addEventListener("input", (e) => {
-            const val = e.target.value;
+        const update = (val) => {
             baAfter.style.width = `${val}%`;
             baHandle.style.left = `${val}%`;
+        };
+        // initialize based on current value
+        update(sliderInput.value);
+        sliderInput.addEventListener("input", (e) => {
+            update(e.target.value);
         });
+        // ensure images are visible in case observer delayed them
+        const imgs = container.querySelectorAll('img');
+        imgs.forEach(i=>{ i.style.opacity='1'; i.style.visibility='visible'; });
     }
 });
 

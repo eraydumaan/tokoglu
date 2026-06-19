@@ -516,12 +516,16 @@ section {
     height: 100%;
     object-fit: cover;
     display: block;
+    opacity: 1;
+    transform: none;
+    visibility: visible;
 }
 
 .ba-after {
     width: 50%;
     border-right: 2px solid var(--accent);
     z-index: 2;
+    overflow: hidden;
 }
 
 .ba-label {
