@@ -100,16 +100,6 @@ function runCounters() {
     });
 }
 
-const hero = document.getElementById("heroScene");
-const parallaxBg = document.getElementById("parallaxBg");
-if (hero && parallaxBg && window.innerWidth > 1024) {
-    hero.addEventListener("mousemove", (e) => {
-        const x = (e.clientX - window.innerWidth / 2) * 0.03;
-        const y = (e.clientY - window.innerHeight / 2) * 0.03;
-        parallaxBg.style.transform = `scale(1.05) translate(${x}px, ${y}px)`;
-    });
-}
-
 const filters = document.querySelectorAll(".filter-node");
 const bentoItems = document.querySelectorAll(".bento-item");
 

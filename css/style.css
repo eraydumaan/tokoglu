@@ -179,13 +179,17 @@ nav a.active {
     z-index: 1;
     transform: scale(1.05);
     transition: transform 0.1s linear;
+    background-image: url("../images/mutfak-5.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero-video-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(30%) grayscale(10%);
+    filter: brightness(55%) grayscale(5%);
 }
 
 .hero-overlay {
@@ -194,7 +198,7 @@ nav a.active {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, #07080af2 40%, transparent);
+    background: linear-gradient(to right, rgba(7, 8, 10, 0.82) 36%, rgba(7, 8, 10, 0.22) 100%);
     z-index: 2;
 }
 
