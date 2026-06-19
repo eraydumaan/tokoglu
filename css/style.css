@@ -483,6 +483,11 @@ section {
     background: var(--bg-card);
 }
 
+.ba-stack {
+    display: grid;
+    gap: 30px;
+}
+
 .ba-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -499,18 +504,24 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
 }
 
 .ba-before {
-    background-image: url("../images/atolye-ham.jpg");
+    z-index: 1;
+}
+
+.ba-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .ba-after {
-    background-image: url("../images/tv-1.jpg");
     width: 50%;
     border-right: 2px solid var(--accent);
+    z-index: 2;
 }
 
 .ba-label {

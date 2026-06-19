@@ -84,17 +84,19 @@ filters.forEach((filterButton) => {
     });
 });
 
-const sliderInput = document.getElementById("baSlider");
-const baAfter = document.getElementById("baAfter");
-const baHandle = document.getElementById("baHandle");
+document.querySelectorAll(".ba-container").forEach((container) => {
+    const sliderInput = container.querySelector(".ba-scroller");
+    const baAfter = container.querySelector(".ba-after");
+    const baHandle = container.querySelector(".ba-handle");
 
-if (sliderInput && baAfter && baHandle) {
-    sliderInput.addEventListener("input", (e) => {
-        const val = e.target.value;
-        baAfter.style.width = `${val}%`;
-        baHandle.style.left = `${val}%`;
-    });
-}
+    if (sliderInput && baAfter && baHandle) {
+        sliderInput.addEventListener("input", (e) => {
+            const val = e.target.value;
+            baAfter.style.width = `${val}%`;
+            baHandle.style.left = `${val}%`;
+        });
+    }
+});
 
 const stepItems = document.querySelectorAll(".step-item");
 const processImages = document.querySelectorAll(".process-img");
