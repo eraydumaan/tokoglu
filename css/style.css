@@ -36,30 +36,40 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    padding-bottom: clamp(70px, 10vh, 120px);
+    overflow: hidden;
     transition: opacity 0.8s var(--bezier), transform 0.8s var(--bezier);
 }
 
-.loader-logo {
-    font-family: var(--font-title);
-    font-size: 2.2rem;
-    letter-spacing: 5px;
-    margin-bottom: 10px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: loadReveal 1s var(--bezier) forwards;
+#loader::before,
+#loader::after {
+    content: "";
+    position: absolute;
+    inset: 0;
 }
 
-.loader-logo span {
-    color: var(--accent);
+#loader::before {
+    background: url("../images/logo.jpeg") center / cover no-repeat;
+    animation: loaderReveal 1.8s var(--bezier) both;
+    z-index: 0;
+}
+
+#loader::after {
+    background:
+        radial-gradient(circle at center, rgba(7, 8, 10, 0.02) 0%, rgba(7, 8, 10, 0.42) 72%),
+        linear-gradient(180deg, rgba(7, 8, 10, 0.04), rgba(7, 8, 10, 0.35));
+    z-index: 1;
 }
 
 .loader-bar {
-    width: 100px;
+    width: min(180px, 36vw);
     height: 1px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.14);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 0 24px rgba(212, 175, 55, 0.22);
+    z-index: 2;
 }
 
 .loader-bar::after {
@@ -73,10 +83,15 @@ body {
     animation: barFill 1.5s var(--bezier) forwards;
 }
 
-@keyframes loadReveal {
+@keyframes loaderReveal {
+    from {
+        filter: brightness(0.75);
+        transform: scale(1.06);
+    }
+
     to {
-        opacity: 1;
-        transform: translateY(0);
+        filter: brightness(1);
+        transform: scale(1);
     }
 }
 
