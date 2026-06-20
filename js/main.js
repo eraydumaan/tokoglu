@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 loader.style.display = "none";
             }, 800);
         }
-    }, 2000);
+    }, 1000);
 });
 
 // Fix image loading when filenames contain Turkish characters vs ASCII aliases.
@@ -57,6 +57,31 @@ document.addEventListener('DOMContentLoaded', () => { fixImageFallbacks();
         });
     }, 300);
 });
+
+const menuToggle = document.querySelector(".menu-toggle");
+const siteNav = document.querySelector("header nav");
+
+if (menuToggle && siteNav) {
+    const closeMenu = () => {
+        menuToggle.classList.remove("active");
+        siteNav.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Menüyü aç");
+    };
+
+    menuToggle.addEventListener("click", () => {
+        const isOpen = siteNav.classList.toggle("active");
+        menuToggle.classList.toggle("active", isOpen);
+        document.body.classList.toggle("menu-open", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Menüyü kapat" : "Menüyü aç");
+    });
+
+    siteNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+    });
+}
 
 
 const observer = new IntersectionObserver((entries) => {
