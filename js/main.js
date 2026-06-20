@@ -162,13 +162,14 @@ const lightbox = document.getElementById("lightboxView");
 const lightboxImg = document.getElementById("lightboxImg");
 const lightboxClose = document.getElementById("lightboxClose");
 
-bentoItems.forEach((item) => {
+document.querySelectorAll(".bento-item, .insta-item").forEach((item) => {
     item.addEventListener("click", () => {
         const img = item.querySelector("img");
         if (!img || !lightbox || !lightboxImg) {
             return;
         }
         lightboxImg.setAttribute("src", img.getAttribute("src"));
+        lightboxImg.setAttribute("alt", img.getAttribute("alt") || "Büyük Görsel");
         lightbox.classList.add("active");
     });
 });

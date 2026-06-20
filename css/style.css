@@ -846,6 +846,7 @@ section {
     aspect-ratio: 1;
     overflow: hidden;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .insta-item img {
