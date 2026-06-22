@@ -771,6 +771,7 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
+    min-width: 0;
 }
 
 .quote-eyebrow {
@@ -791,12 +792,14 @@ section {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    min-width: 0;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    min-width: 0;
 }
 
 .form-group label {
@@ -817,6 +820,31 @@ section {
     font-size: 0.95rem;
     transition: var(--transition);
     border-radius: 2px;
+    width: 100%;
+    min-width: 0;
+}
+
+.form-group select {
+    appearance: none;
+    background-color: #0c0d10;
+    background-image: linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%);
+    background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    color: #fff;
+    cursor: pointer;
+    padding-right: 52px;
+}
+
+.form-group select option {
+    background: #0c0d10;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.form-group select option:checked {
+    background: var(--accent);
+    color: #0c0d10;
 }
 
 .form-group input:focus,
@@ -831,6 +859,7 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    min-width: 0;
 }
 
 .quote-submit-btn {
@@ -1620,5 +1649,51 @@ footer {
     .floating-action-modern .cta-text-hover {
         font-size: 0.72rem;
         white-space: nowrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .quote-form-container,
+    .contact-info-block,
+    .info-card,
+    .form-row,
+    .form-group {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        min-height: 54px;
+        font-size: 16px;
+    }
+
+    .form-group select {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 420px) {
+    body {
+        padding-bottom: 88px;
+    }
+
+    .sticky-wa-minimal {
+        width: 46px;
+        height: 46px;
+    }
+
+    .wa-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.7rem;
+    }
+
+    .floating-action-modern,
+    .floating-action-modern .cta-text-slider {
+        min-width: 0;
     }
 }
