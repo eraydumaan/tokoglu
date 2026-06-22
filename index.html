@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Plus+Jakarta+Sans:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
-    <link rel="apple-touch-icon" href="images/logo.jpeg">
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpeg">
+    <link rel="apple-touch-icon" href="images/favicon.jpeg">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -42,7 +42,7 @@
 
     <section class="hero" id="heroScene">
         <div class="hero-video-container" id="parallaxBg" style="background-image: url('images/mutfak-5.jpg');">
-            <img src="images/mutfak-5.jpg" alt="Tokoğlu Ahşap atölye ve proje görseli">
+            <img src="images/mutfak-5.jpg" alt="Tokoğlu Ahşap atölye ve proje görseli" width="1600" height="900">
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-inner reveal">
@@ -62,7 +62,7 @@
                 <p>Mutfak dolaplarından yatak odası gardıroplarına kadar her imalatta birinci sınıf fırınlanmış kereste ve dayanıklı mekanizmalar tercih ediyoruz.</p>
             </div>
             <div class="about-img-box reveal">
-                <img src="images/atolye.jpg" alt="Tokoğlu Ahşap atölye çalışması">
+                <img src="images/atolye.jpeg" alt="Tokoğlu Ahşap atölye çalışması" width="750" height="1014">
             </div>
         </div>
     </section>
@@ -89,96 +89,328 @@
         </div>
 
         <div class="gallery-filters reveal">
-            <button class="filter-node active" data-target="all">Tümü</button>
-            <button class="filter-node" data-target="mutfak">Mutfak</button>
-            <button class="filter-node" data-target="dolap">Dolap & Yatak</button>
-            <button class="filter-node" data-target="yasam">TV & Yaşam</button>
-            <button class="filter-node" data-target="banyo">Banyo</button>
+            <button class="filter-node active" data-target="mutfak">Mutfak</button>
+            <button class="filter-node" data-target="ofis">Ofis</button>
+            <button class="filter-node" data-target="yatak-dolap">Yatak Odası & Dolap</button>
+            <button class="filter-node" data-target="tv-salon">TV Ünitesi & Salon</button>
+            <button class="filter-node" data-target="wc-banyo">WC & Banyo</button>
+            <button class="filter-node" data-target="atolye">Atölye</button>
         </div>
 
         <div class="bento-grid reveal">
             <div class="bento-item span-8" data-cat="mutfak">
-                <img src="images/mutfak-1.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 1">
+                <img src="images/mutfak-1.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 1" width="1200" height="1600">
                 <div class="bento-info">
                     <p>Mutfak</p>
                     <h3>Mutfak Uygulaması 01</h3>
                 </div>
             </div>
             <div class="bento-item span-4" data-cat="mutfak">
-                <img src="images/mutfak-2.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 2">
+                <img src="images/mutfak-2.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 2" width="1200" height="1600">
                 <div class="bento-info">
                     <p>Mutfak</p>
                     <h3>Mutfak Uygulaması 02</h3>
                 </div>
             </div>
             <div class="bento-item span-4" data-cat="mutfak">
-                <img src="images/mutfak-7.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 3">
+                <img src="images/mutfak-7.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 3" width="1200" height="1600">
                 <div class="bento-info">
                     <p>Mutfak</p>
                     <h3>Mutfak Uygulaması 03</h3>
                 </div>
             </div>
             <div class="bento-item span-8" data-cat="mutfak">
-                <img src="images/mutfak-4.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 4">
+                <img src="images/mutfak-4.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 4" width="1200" height="1600">
                 <div class="bento-info">
                     <p>Mutfak</p>
                     <h3>Mutfak Uygulaması 04</h3>
                 </div>
             </div>
             <div class="bento-item span-6" data-cat="mutfak">
-                <img src="images/mutfak-5.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 5">
+                <img src="images/mutfak-5.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 5" width="1600" height="900">
                 <div class="bento-info">
                     <p>Mutfak</p>
                     <h3>Mutfak Uygulaması 05</h3>
                 </div>
             </div>
             <div class="bento-item span-6" data-cat="mutfak">
-                <img src="images/mutfak-6.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 6">
+                <img src="images/mutfak-6.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 6" width="1600" height="1200">
                 <div class="bento-info">
                     <p>Mutfak</p>
                     <h3>Mutfak Uygulaması 06</h3>
                 </div>
             </div>
-            <div class="bento-item span-4" data-cat="dolap">
-                <img src="images/dolap.jpg" alt="Tokoğlu Ahşap dolap uygulaması">
+            <div class="bento-item span-4" data-cat="yatak-dolap">
+                <img src="images/dolap.jpg" alt="Tokoğlu Ahşap dolap uygulaması" width="1200" height="1600">
                 <div class="bento-info">
                     <p>Dolap & Yatak</p>
-                    <h3>Dolap Uygulaması 01</h3>
+                    <h3>Yatak Odası & Dolap Uygulaması 01</h3>
                 </div>
             </div>
-            <div class="bento-item span-8" data-cat="dolap">
-                <img src="images/dolap-2.jpg" alt="Tokoğlu Ahşap dolap uygulaması 2">
+            <div class="bento-item span-8" data-cat="yatak-dolap">
+                <img src="images/dolap-2.jpg" alt="Tokoğlu Ahşap dolap uygulaması 2" width="1200" height="1600">
                 <div class="bento-info">
                     <p>Dolap & Yatak</p>
-                    <h3>Dolap Uygulaması 02</h3>
+                    <h3>Yatak Odası & Dolap Uygulaması 02</h3>
                 </div>
             </div>
-            <div class="bento-item span-6" data-cat="yasam">
-                <img src="images/tv-1.jpg" alt="Tokoğlu Ahşap TV ünitesi uygulaması 1">
+            <div class="bento-item span-6" data-cat="tv-salon">
+                <img src="images/tv-1.jpg" alt="Tokoğlu Ahşap TV ünitesi uygulaması 1" width="900" height="1600">
                 <div class="bento-info">
                     <p>TV & Yaşam</p>
-                    <h3>TV Ünitesi Uygulaması 01</h3>
+                    <h3>TV Ünitesi & Salon Uygulaması 01</h3>
                 </div>
             </div>
-            <div class="bento-item span-6" data-cat="yasam">
-                <img src="images/tv-2.jpg" alt="Tokoğlu Ahşap TV ünitesi uygulaması 2">
+            <div class="bento-item span-6" data-cat="tv-salon">
+                <img src="images/tv-2.jpg" alt="Tokoğlu Ahşap TV ünitesi uygulaması 2" width="1200" height="1600">
                 <div class="bento-info">
                     <p>TV & Yaşam</p>
-                    <h3>TV Ünitesi Uygulaması 02</h3>
+                    <h3>TV Ünitesi & Salon Uygulaması 02</h3>
                 </div>
             </div>
-            <div class="bento-item span-6" data-cat="banyo">
-                <img src="images/banyo.jpg" alt="Tokoğlu Ahşap banyo uygulaması 1">
+            <div class="bento-item span-6" data-cat="wc-banyo">
+                <img src="images/banyo.jpg" alt="Tokoğlu Ahşap banyo uygulaması 1" width="1200" height="1600">
                 <div class="bento-info">
                     <p>Banyo</p>
-                    <h3>Banyo Uygulaması 01</h3>
+                    <h3>WC & Banyo Uygulaması 01</h3>
                 </div>
             </div>
-            <div class="bento-item span-6" data-cat="banyo">
-                <img src="images/banyo-1.jpg" alt="Tokoğlu Ahşap banyo uygulaması 2">
+            <div class="bento-item span-6" data-cat="wc-banyo">
+                <img src="images/banyo-1.jpg" alt="Tokoğlu Ahşap banyo uygulaması 2" width="1200" height="1600">
                 <div class="bento-info">
                     <p>Banyo</p>
-                    <h3>Banyo Uygulaması 02</h3>
+                    <h3>WC & Banyo Uygulaması 02</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="ofis">
+                <img src="images/ofis-1.jpeg" alt="Tokoğlu Ahşap ofis uygulaması 1" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 01</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="ofis">
+                <img src="images/calisma-masasi.jpeg" alt="Tokoğlu Ahşap çalışma masası uygulaması" width="1200" height="1600">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 02</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="yatak-dolap">
+                <img src="images/yatak-2.jpeg" alt="Tokoğlu Ahşap yatak odası uygulaması 2" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Yatak Odası & Dolap</p>
+                    <h3>Yatak Odası & Dolap Uygulaması 03</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="yatak-dolap">
+                <img src="images/dolap-6.jpeg" alt="Tokoğlu Ahşap dolap uygulaması 6" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Yatak Odası & Dolap</p>
+                    <h3>Yatak Odası & Dolap Uygulaması 04</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="wc-banyo">
+                <img src="images/banyo-2.jpeg" alt="Tokoğlu Ahşap banyo uygulaması 3" width="1200" height="1600">
+                <div class="bento-info">
+                    <p>WC & Banyo</p>
+                    <h3>WC & Banyo Uygulaması 03</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="ofis">
+                <img src="images/duvar.jpeg" alt="Tokoğlu Ahşap duvar kaplama uygulaması" width="900" height="1600">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 03</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="ofis">
+                <img src="images/tavan.jpeg" alt="Tokoğlu Ahşap tavan uygulaması" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 04</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="yatak-dolap">
+                <img src="images/makyaj-2.jpeg" alt="Tokoğlu Ahşap makyaj ünitesi uygulaması 2" width="1200" height="1600">
+                <div class="bento-info">
+                    <p>Yatak Odası & Dolap</p>
+                    <h3>Yatak Odası & Dolap Uygulaması 05</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="atolye">
+                <img src="images/atolye.jpeg" alt="Tokoğlu Ahşap atölye uygulaması" width="750" height="1014">
+                <div class="bento-info">
+                    <p>Atölye</p>
+                    <h3>Atölye Uygulaması 01</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="tv-salon">
+                <img src="images/salon.jpeg" alt="Tokoğlu Ahşap salon uygulaması" width="1200" height="1600">
+                <div class="bento-info">
+                    <p>TV Ünitesi & Salon</p>
+                    <h3>TV Ünitesi & Salon Uygulaması 03</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="mutfak">
+                <img src="images/mutfak-10.jpeg" alt="Tokoğlu Ahşap mutfak uygulaması 10" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Mutfak</p>
+                    <h3>Mutfak Uygulaması 07</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="mutfak">
+                <img src="images/mutfak-12.jpeg" alt="Tokoğlu Ahşap mutfak uygulaması 12" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Mutfak</p>
+                    <h3>Mutfak Uygulaması 08</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="atolye">
+                <img src="images/atolye-2.jpeg" alt="Tokoğlu Ahşap atölye uygulaması 2" width="720" height="960">
+                <div class="bento-info">
+                    <p>Atölye</p>
+                    <h3>Atölye Uygulaması 02</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="atolye">
+                <img src="images/calismamasasi.jpeg" alt="Tokoğlu Ahşap çalışma masası uygulaması 2" width="1280" height="1600">
+                <div class="bento-info">
+                    <p>Atölye</p>
+                    <h3>Atölye Uygulaması 03</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="yatak-dolap">
+                <img src="images/dolap-7.jpeg" alt="Tokoğlu Ahşap dolap uygulaması 7" width="814" height="749">
+                <div class="bento-info">
+                    <p>Yatak Odası & Dolap</p>
+                    <h3>Yatak Odası & Dolap Uygulaması 06</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="yatak-dolap">
+                <img src="images/dolap-8.jpeg" alt="Tokoğlu Ahşap dolap uygulaması 8" width="1200" height="1600">
+                <div class="bento-info">
+                    <p>Yatak Odası & Dolap</p>
+                    <h3>Yatak Odası & Dolap Uygulaması 07</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="ofis">
+                <img src="images/duvar-2.jpeg" alt="Tokoğlu Ahşap duvar kaplama uygulaması 2" width="1200" height="1600">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 05</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="mutfak">
+                <img src="images/mutfak-11.jpeg" alt="Tokoğlu Ahşap mutfak uygulaması 11" width="1200" height="1600">
+                <div class="bento-info">
+                    <p>Mutfak</p>
+                    <h3>Mutfak Uygulaması 09</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="ofis">
+                <img src="images/ofis-2.jpeg" alt="Tokoğlu Ahşap ofis uygulaması 2" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 06</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="ofis">
+                <img src="images/ofis-3.jpeg" alt="Tokoğlu Ahşap ofis uygulaması 3" width="1000" height="563">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 07</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="ofis">
+                <img src="images/ofis-4.jpeg" alt="Tokoğlu Ahşap ofis uygulaması 4" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 08</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="ofis">
+                <img src="images/ofis-5.jpeg" alt="Tokoğlu Ahşap ofis uygulaması 5" width="1200" height="1600">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 09</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="ofis">
+                <img src="images/ofis-6.jpeg" alt="Tokoğlu Ahşap ofis uygulaması 6" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 10</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="ofis">
+                <img src="images/ofis7.jpeg" alt="Tokoğlu Ahşap ofis uygulaması 7" width="1600" height="853">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 11</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="ofis">
+                <img src="images/ofis-8.jpeg" alt="Tokoğlu Ahşap ofis uygulaması 8" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Ofis</p>
+                    <h3>Ofis Uygulaması 12</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="yatak-dolap">
+                <img src="images/ranza.jpeg" alt="Tokoğlu Ahşap ranza uygulaması" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Yatak Odası & Dolap</p>
+                    <h3>Yatak Odası & Dolap Uygulaması 08</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="tv-salon">
+                <img src="images/somine.jpeg" alt="Tokoğlu Ahşap şömine uygulaması" width="1200" height="1600">
+                <div class="bento-info">
+                    <p>TV Ünitesi & Salon</p>
+                    <h3>TV Ünitesi & Salon Uygulaması 04</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="yatak-dolap">
+                <img src="images/yatak-3.jpeg" alt="Tokoğlu Ahşap yatak odası uygulaması 3" width="720" height="791">
+                <div class="bento-info">
+                    <p>Yatak Odası & Dolap</p>
+                    <h3>Yatak Odası & Dolap Uygulaması 09</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="yatak-dolap">
+                <img src="images/yatak-4.jpeg" alt="Tokoğlu Ahşap yatak odası uygulaması 4" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Yatak Odası & Dolap</p>
+                    <h3>Yatak Odası & Dolap Uygulaması 10</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="atolye">
+                <img src="images/atolye.jpg" alt="Tokoğlu Ahşap atölye uygulaması 3" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Atölye</p>
+                    <h3>Atölye Uygulaması 04</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="atolye">
+                <img src="images/atolye-2.jpg" alt="Tokoğlu Ahşap atölye uygulaması 4" width="1600" height="1200">
+                <div class="bento-info">
+                    <p>Atölye</p>
+                    <h3>Atölye Uygulaması 05</h3>
+                </div>
+            </div>
+            <div class="bento-item span-4" data-cat="atolye">
+                <img src="images/atolye-3.jpg" alt="Tokoğlu Ahşap atölye uygulaması 5" width="1200" height="1600">
+                <div class="bento-info">
+                    <p>Atölye</p>
+                    <h3>Atölye Uygulaması 06</h3>
+                </div>
+            </div>
+            <div class="bento-item span-6" data-cat="tv-salon">
+                <img src="images/salon-2.png" alt="Tokoğlu Ahşap salon uygulaması 2" width="1448" height="1086">
+                <div class="bento-info">
+                    <p>TV Ünitesi & Salon</p>
+                    <h3>TV Ünitesi & Salon Uygulaması 05</h3>
                 </div>
             </div>
         </div>
@@ -192,31 +424,31 @@
         <div class="ba-stack">
             <div class="ba-container" aria-label="Before/After 1">
                 <div class="ba-img ba-before" style="background-image: url('images/atolye.jpg');">
-                    <img src="images/atolye.jpg" alt="Atölye öncesi görünüm">
+                    <img src="images/atolye.jpg" alt="Atölye öncesi görünüm" width="1600" height="1200">
                     <div class="ba-label">Önce</div>
                 </div>
                 <div class="ba-img ba-after" style="background-image: url('images/tv-1.jpg');">
-                    <img src="images/tv-1.jpg" alt="TV ünitesi sonrası görünüm">
+                    <img src="images/tv-1.jpg" alt="TV ünitesi sonrası görünüm" width="900" height="1600">
                     <div class="ba-label">Sonrası</div>
                 </div>
             </div>
             <div class="ba-container" aria-label="Before/After 2">
                 <div class="ba-img ba-before" style="background-image: url('images/atolye-2.jpg');">
-                    <img src="images/atolye-2.jpg" alt="Atölye öncesi görünüm 2">
+                    <img src="images/atolye-2.jpg" alt="Atölye öncesi görünüm 2" width="1600" height="1200">
                     <div class="ba-label">Önce</div>
                 </div>
                 <div class="ba-img ba-after" style="background-image: url('images/ofis.jpg');">
-                    <img src="images/ofis.jpg" alt="Ofis sonrası görünüm">
+                    <img src="images/ofis.jpg" alt="Ofis sonrası görünüm" width="1080" height="1080">
                     <div class="ba-label">Sonrası</div>
                 </div>
             </div>
             <div class="ba-container" aria-label="Before/After 3">
                 <div class="ba-img ba-before" style="background-image: url('images/atolye-3.jpg');">
-                    <img src="images/atolye-3.jpg" alt="Atölye öncesi görünüm 3">
+                    <img src="images/atolye-3.jpg" alt="Atölye öncesi görünüm 3" width="1200" height="1600">
                     <div class="ba-label">Önce</div>
                 </div>
                 <div class="ba-img ba-after" style="background-image: url('images/dolap-5.jpg');">
-                    <img src="images/dolap-5.jpg" alt="Dolap sonrası görünüm">
+                    <img src="images/dolap-5.jpg" alt="Dolap sonrası görünüm" width="1200" height="1600">
                     <div class="ba-label">Sonrası</div>
                 </div>
             </div>
@@ -244,9 +476,9 @@
                 </div>
             </div>
             <div class="process-visual reveal">
-                <img src="images/mutfak-4.jpg" class="process-img active" alt="Tokoğlu Ahşap proje planlama aşaması">
-                <img src="images/mutfak-9.jpg" class="process-img" alt="Tokoğlu Ahşap üretim ve kaplama aşaması">
-                <img src="images/dolap-3.jpg" class="process-img" alt="Tokoğlu Ahşap montaj ve teslim aşaması">
+                <img src="images/mutfak-4.jpg" class="process-img active" alt="Tokoğlu Ahşap proje planlama aşaması" width="1200" height="1600">
+                <img src="images/mutfak-9.jpg" class="process-img" alt="Tokoğlu Ahşap üretim ve kaplama aşaması" width="1200" height="1600">
+                <img src="images/dolap-3.jpg" class="process-img" alt="Tokoğlu Ahşap montaj ve teslim aşaması" width="1200" height="1600">
             </div>
         </div>
     </section>
@@ -363,35 +595,65 @@
             <h2>Tüm Kategorilerden Ek Görseller</h2>
         </div>
         <div class="insta-grid reveal">
-            <div class="insta-item"><img src="images/atolye.jpg" alt="Tokoglu Ahsap atolye uygulamasi"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/atolye-2.jpg" alt="Tokoglu Ahsap atolye uygulamasi 2"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/atolye-3.jpg" alt="Tokoglu Ahsap atolye uygulamasi 3"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/banyo.jpg" alt="Tokoglu Ahsap banyo uygulamasi"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/banyo-1.jpg" alt="Tokoglu Ahsap banyo uygulamasi 2"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/dolap.jpg" alt="Tokoglu Ahsap dolap uygulamasi"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/dolap-2.jpg" alt="Tokoglu Ahsap dolap uygulamasi 2"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/dolap-3.jpg" alt="Tokoglu Ahsap dolap uygulamasi 3"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/dolap-4.jpg" alt="Tokoglu Ahsap dolap uygulamasi 4"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/dolap-5.jpg" alt="Tokoglu Ahsap dolap uygulamasi 5"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/kaplama.jpg" alt="Tokoglu Ahsap kaplama uygulamasi"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/kaplama-2.jpg" alt="Tokoglu Ahsap kaplama uygulamasi 2"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/makyaj.jpg" alt="Tokoglu Ahsap makyaj unitesi uygulamasi"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/mutfak.jpg" alt="Tokoglu Ahsap mutfak uygulamasi"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/mutfak-1.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 1"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/mutfak-2.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 2"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/mutfak-4.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 4"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/mutfak-5.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 5"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/mutfak-6.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 6"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/mutfak-7.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 7"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/mutfak-8.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 8"><div class="insta-overlay">↗</div></div>
-            <div class="insta-item"><img src="images/mutfak-9.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 9"><div class="insta-overlay">↗</div></div>
-            <div class="insta-item"><img src="images/ofis.jpg" alt="Tokoglu Ahsap ofis uygulamasi"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/surgu-kapi.jpg" alt="Tokoglu Ahsap surgu kapi uygulamasi"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/tv-1.jpg" alt="Tokoglu Ahsap TV unitesi uygulamasi 1"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/tv-2.jpg" alt="Tokoglu Ahsap TV unitesi uygulamasi 2"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/unite.jpg" alt="Tokoglu Ahsap unite uygulamasi"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/wc-1.jpg" alt="Tokoglu Ahsap WC uygulamasi"><div class="insta-overlay">&#8599;</div></div>
-            <div class="insta-item"><img src="images/yatak-1.jpg" alt="Tokoglu Ahsap yatak odasi uygulamasi"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="atolye"><img src="images/atolye.jpg" alt="Tokoglu Ahsap atolye uygulamasi" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="atolye"><img src="images/atolye-2.jpg" alt="Tokoglu Ahsap atolye uygulamasi 2" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="atolye"><img src="images/atolye-3.jpg" alt="Tokoglu Ahsap atolye uygulamasi 3" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="wc-banyo"><img src="images/banyo.jpg" alt="Tokoglu Ahsap banyo uygulamasi" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="wc-banyo"><img src="images/banyo-1.jpg" alt="Tokoglu Ahsap banyo uygulamasi 2" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/dolap.jpg" alt="Tokoglu Ahsap dolap uygulamasi" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/dolap-2.jpg" alt="Tokoglu Ahsap dolap uygulamasi 2" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/dolap-3.jpg" alt="Tokoglu Ahsap dolap uygulamasi 3" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/dolap-4.jpg" alt="Tokoglu Ahsap dolap uygulamasi 4" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/dolap-5.jpg" alt="Tokoglu Ahsap dolap uygulamasi 5" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/kaplama.jpg" alt="Tokoglu Ahsap kaplama uygulamasi" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/kaplama-2.jpg" alt="Tokoglu Ahsap kaplama uygulamasi 2" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/makyaj.jpg" alt="Tokoglu Ahsap makyaj unitesi uygulamasi" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak.jpg" alt="Tokoglu Ahsap mutfak uygulamasi" width="1600" height="900"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak-1.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 1" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak-2.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 2" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak-4.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 4" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak-5.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 5" width="1600" height="900"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak-6.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 6" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak-7.jpg" alt="Tokoglu Ahsap mutfak uygulamasi 7" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak-8.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 8" width="1600" height="1200"><div class="insta-overlay">↗</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak-9.jpg" alt="Tokoğlu Ahşap mutfak uygulaması 9" width="1200" height="1600"><div class="insta-overlay">↗</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/ofis.jpg" alt="Tokoglu Ahsap ofis uygulamasi" width="1080" height="1080"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/surgu-kapi.jpg" alt="Tokoglu Ahsap surgu kapi uygulamasi" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="tv-salon"><img src="images/tv-1.jpg" alt="Tokoglu Ahsap TV unitesi uygulamasi 1" width="900" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="tv-salon"><img src="images/tv-2.jpg" alt="Tokoglu Ahsap TV unitesi uygulamasi 2" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="tv-salon"><img src="images/unite.jpg" alt="Tokoglu Ahsap unite uygulamasi" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="wc-banyo"><img src="images/wc-1.jpg" alt="Tokoglu Ahsap WC uygulamasi" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/yatak-1.jpg" alt="Tokoglu Ahsap yatak odasi uygulamasi" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="atolye"><img src="images/atolye-2.jpeg" alt="Tokoglu Ahsap atolye uygulamasi 4" width="720" height="960"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="atolye"><img src="images/atolye.jpeg" alt="Tokoglu Ahsap atolye uygulamasi 5" width="750" height="1014"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="wc-banyo"><img src="images/banyo-2.jpeg" alt="Tokoglu Ahsap banyo uygulamasi 3" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/calisma-masasi.jpeg" alt="Tokoglu Ahsap calisma masasi uygulamasi" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="atolye"><img src="images/calismamasasi.jpeg" alt="Tokoglu Ahsap calisma masasi uygulamasi 2" width="1280" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/dolap-6.jpeg" alt="Tokoglu Ahsap dolap uygulamasi 6" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/dolap-7.jpeg" alt="Tokoglu Ahsap dolap uygulamasi 7" width="814" height="749"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/dolap-8.jpeg" alt="Tokoglu Ahsap dolap uygulamasi 8" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/duvar-2.jpeg" alt="Tokoglu Ahsap duvar kaplama uygulamasi 2" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/duvar.jpeg" alt="Tokoglu Ahsap duvar kaplama uygulamasi" width="900" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/makyaj-2.jpeg" alt="Tokoglu Ahsap makyaj unitesi uygulamasi 2" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak-10.jpeg" alt="Tokoglu Ahsap mutfak uygulamasi 10" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak-11.jpeg" alt="Tokoglu Ahsap mutfak uygulamasi 11" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="mutfak"><img src="images/mutfak-12.jpeg" alt="Tokoglu Ahsap mutfak uygulamasi 12" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/ofis-1.jpeg" alt="Tokoglu Ahsap ofis uygulamasi 1" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/ofis-2.jpeg" alt="Tokoglu Ahsap ofis uygulamasi 2" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/ofis-3.jpeg" alt="Tokoglu Ahsap ofis uygulamasi 3" width="1000" height="563"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/ofis-4.jpeg" alt="Tokoglu Ahsap ofis uygulamasi 4" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/ofis-5.jpeg" alt="Tokoglu Ahsap ofis uygulamasi 5" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/ofis-6.jpeg" alt="Tokoglu Ahsap ofis uygulamasi 6" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/ofis-8.jpeg" alt="Tokoglu Ahsap ofis uygulamasi 8" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/ofis7.jpeg" alt="Tokoglu Ahsap ofis uygulamasi 7" width="1600" height="853"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/ranza.jpeg" alt="Tokoglu Ahsap ranza uygulamasi" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="tv-salon"><img src="images/salon-2.png" alt="Tokoglu Ahsap salon uygulamasi 2" width="1448" height="1086"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="tv-salon"><img src="images/salon.jpeg" alt="Tokoglu Ahsap salon uygulamasi" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="tv-salon"><img src="images/somine.jpeg" alt="Tokoglu Ahsap somine uygulamasi" width="1200" height="1600"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="ofis"><img src="images/tavan.jpeg" alt="Tokoglu Ahsap tavan uygulamasi" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/yatak-2.jpeg" alt="Tokoglu Ahsap yatak odasi uygulamasi 2" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/yatak-3.jpeg" alt="Tokoglu Ahsap yatak odasi uygulamasi 3" width="720" height="791"><div class="insta-overlay">&#8599;</div></div>
+            <div class="insta-item" data-cat="yatak-dolap"><img src="images/yatak-4.jpeg" alt="Tokoglu Ahsap yatak odasi uygulamasi 4" width="1600" height="1200"><div class="insta-overlay">&#8599;</div></div>
         </div>
     </section>
 
@@ -436,7 +698,7 @@
         </div>
         <div class="footer-bottom">
             <div>© 2026 Tokoğlu Ahşap. Tüm Hakları Saklıdır.</div>
-            <div class="footer-architecture">PREMIUM FRONT-END ARCHITECTURE</div>
+            <div class="footer-architecture">ERAYDUMAN FRONT-END ARCHITECTURE</div>
         </div>
     </footer>
 

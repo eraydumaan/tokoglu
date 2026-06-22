@@ -102,8 +102,8 @@ body {
 }
 
 .reveal {
-    opacity: 0;
-    transform: translateY(50px);
+    opacity: 1;
+    transform: translateY(0);
     transition: var(--transition);
 }
 
@@ -472,7 +472,8 @@ section {
     transition: var(--transition);
 }
 
-.bento-item.hide {
+.bento-item.hide,
+.insta-item.hide {
     display: none;
 }
 
@@ -489,6 +490,20 @@ section {
 .span-6 {
     grid-column: span 6;
     height: 450px;
+}
+
+.showcase.is-filtered .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.showcase.is-filtered .bento-item:not(.hide) {
+    display: block;
+    grid-column: auto;
+    width: 100%;
+    height: 360px;
+    margin: 0;
 }
 
 .bento-item img {
@@ -1339,9 +1354,15 @@ footer {
         justify-content: flex-start;
         overflow-x: auto;
         border: none;
-        padding-bottom: 6px;
-        gap: 10px;
+        margin-left: -5%;
+        margin-right: -5%;
+        margin-bottom: 34px;
+        padding: 0 5% 10px;
+        gap: 8px;
         scrollbar-width: none;
+        scroll-padding-inline: 5%;
+        -webkit-overflow-scrolling: touch;
+        mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
     }
 
     .gallery-filters::-webkit-scrollbar {
@@ -1350,16 +1371,20 @@ footer {
 
     .filter-node {
         flex: 0 0 auto;
-        padding: 11px 16px;
-        font-size: 0.72rem;
+        min-width: max-content;
+        padding: 12px 18px;
+        font-size: 0.7rem;
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.03);
+        letter-spacing: 1.6px;
     }
 
     .filter-node.active {
         background: var(--accent);
         color: var(--bg-dark);
+        border-color: var(--accent);
+        box-shadow: 0 10px 24px rgba(212, 175, 55, 0.18);
     }
 
     .filter-node.active::after {
@@ -1368,6 +1393,16 @@ footer {
 
     .bento-grid {
         gap: 16px;
+    }
+
+    .showcase.is-filtered .bento-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .showcase.is-filtered .bento-item:not(.hide) {
+        margin: 0;
+        height: 260px;
     }
 
     .span-8,
@@ -1501,10 +1536,29 @@ footer {
         line-height: 1.75;
     }
 
+    .gallery-filters {
+        gap: 7px;
+        padding-bottom: 8px;
+    }
+
+    .filter-node {
+        padding: 10px 14px;
+        font-size: 0.66rem;
+        letter-spacing: 1.4px;
+    }
+
     .span-8,
     .span-4,
     .span-6 {
         height: 245px;
+    }
+
+    .showcase.is-filtered .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .showcase.is-filtered .bento-item:not(.hide) {
+        height: 260px;
     }
 
     .insta-grid {

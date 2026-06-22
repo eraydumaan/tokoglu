@@ -10,7 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 800);
         }
     }, 1000);
+
 });
+
+function optimizeImageLoading() {
+    document.querySelectorAll("img").forEach((img, index) => {
+        img.decoding = "async";
+        if (index === 0 || img.closest(".hero-video-container")) {
+            img.loading = "eager";
+            img.setAttribute("fetchpriority", "high");
+        } else if (!img.hasAttribute("loading")) {
+            img.loading = "lazy";
+        }
+    });
+}
 
 // Fix image loading when filenames contain Turkish characters vs ASCII aliases.
 function fixImageFallbacks() {
@@ -41,7 +54,9 @@ function fixImageFallbacks() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => { fixImageFallbacks();
+document.addEventListener('DOMContentLoaded', () => {
+    optimizeImageLoading();
+    fixImageFallbacks();
     // Set BA container backgrounds from img src as a robust fallback
     setTimeout(() => {
         document.querySelectorAll('.ba-img').forEach(parent => {
@@ -83,23 +98,17 @@ if (menuToggle && siteNav) {
     });
 }
 
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-            if (entry.target.classList.contains("stats")) {
-                runCounters();
-            }
-        }
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-
 let countersStarted = false;
-function runCounters() {
-    if (countersStarted) {
+
+function resetCounters() {
+    countersStarted = false;
+    document.querySelectorAll(".counter").forEach((counter) => {
+        counter.innerText = "0";
+    });
+}
+
+function runCounters({ restart = false } = {}) {
+    if (countersStarted && !restart) {
         return;
     }
 
@@ -108,6 +117,8 @@ function runCounters() {
         const target = Number(counter.getAttribute("data-count"));
         let count = 0;
         const speed = target / 30;
+
+        counter.innerText = "0";
 
         const updateCount = () => {
             count += speed;
@@ -123,27 +134,127 @@ function runCounters() {
     });
 }
 
-const filters = document.querySelectorAll(".filter-node");
-const bentoItems = document.querySelectorAll(".bento-item");
-
-filters.forEach((filterButton) => {
-    filterButton.addEventListener("click", () => {
-        const currentActive = document.querySelector(".filter-node.active");
-        if (currentActive) {
-            currentActive.classList.remove("active");
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            if (entry.target.classList.contains("stats")) {
+                runCounters();
+            }
         }
+    });
+}, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
 
-        filterButton.classList.add("active");
-        const category = filterButton.dataset.target;
+resetCounters();
 
-        bentoItems.forEach((item) => {
-            if (category === "all" || item.dataset.cat === category) {
-                item.classList.remove("hide");
-            } else {
-                item.classList.add("hide");
+document.querySelectorAll(".reveal").forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (isInViewport) {
+        el.classList.add("active");
+        if (el.classList.contains("stats")) {
+            runCounters({ restart: true });
+        }
+    }
+
+    observer.observe(el);
+});
+
+window.addEventListener("pageshow", () => {
+    const stats = document.querySelector(".stats");
+    if (!stats) return;
+
+    const rect = stats.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (isVisible) {
+        runCounters({ restart: true });
+    }
+});
+
+const getImageOrientation = (img) => {
+    const width = img.naturalWidth || Number(img.dataset.width) || Number(img.getAttribute("width")) || 0;
+    const height = img.naturalHeight || Number(img.dataset.height) || Number(img.getAttribute("height")) || 0;
+
+    if (!width || !height) {
+        return "standard";
+    }
+
+    const ratio = width / height;
+    if (ratio >= 1.55) return "wide";
+    if (ratio >= 1.08) return "landscape";
+    if (ratio <= 0.82) return "portrait";
+    return "standard";
+};
+
+const classifyGalleryItem = (item) => {
+    const img = item.querySelector("img");
+    if (!img) return "standard";
+
+    const orientation = getImageOrientation(img);
+    item.dataset.orientation = orientation;
+    item.classList.remove("is-wide", "is-landscape", "is-portrait", "is-standard");
+    item.classList.add(`is-${orientation}`);
+    return orientation;
+};
+
+document.querySelectorAll(".bento-item, .insta-item").forEach((item, index) => {
+    item.dataset.originalOrder = String(index);
+    const img = item.querySelector("img");
+    if (!img) return;
+
+    if (img.complete) {
+        classifyGalleryItem(item);
+    } else {
+        img.addEventListener("load", () => classifyGalleryItem(item), { once: true });
+    }
+});
+
+document.querySelectorAll(".showcase .gallery-filters").forEach((filterGroup) => {
+    const section = filterGroup.closest("section");
+    const items = section ? section.querySelectorAll(".bento-item, .insta-item") : [];
+    const grid = section ? section.querySelector(".bento-grid, .insta-grid") : null;
+
+    filterGroup.querySelectorAll(".filter-node").forEach((filterButton) => {
+        filterButton.addEventListener("click", () => {
+            const currentActive = filterGroup.querySelector(".filter-node.active");
+            if (currentActive) {
+                currentActive.classList.remove("active");
+            }
+
+            filterButton.classList.add("active");
+            const category = filterButton.dataset.target;
+            section?.classList.toggle("is-filtered", category !== "all");
+
+            items.forEach((item) => {
+                if (category === "all" || item.dataset.cat === category) {
+                    item.classList.remove("hide");
+                } else {
+                    item.classList.add("hide");
+                }
+            });
+
+            if (grid) {
+                const orderedItems = Array.from(items).sort((a, b) => {
+                    if (category === "all") {
+                        return Number(a.dataset.originalOrder) - Number(b.dataset.originalOrder);
+                    }
+
+                    const getNumber = (item) => {
+                        const title = item.querySelector("h3")?.textContent || "";
+                        const match = title.match(/(\d+)\s*$/);
+                        return match ? Number(match[1]) : Number(item.dataset.originalOrder);
+                    };
+
+                    return getNumber(a) - getNumber(b);
+                });
+
+                orderedItems.forEach((item) => grid.appendChild(item));
             }
         });
     });
+
+    filterGroup.querySelector(".filter-node.active")?.click();
 });
 
 const stepItems = document.querySelectorAll(".step-item");
@@ -169,19 +280,21 @@ stepItems.forEach((item, index) => {
     });
 });
 
-new Swiper("#testiSwiper", {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true
-    },
-    breakpoints: {
-        768: {
-            slidesPerView: 2
+if (window.Swiper) {
+    new Swiper("#testiSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2
+            }
         }
-    }
-});
+    });
+}
 
 const lightbox = document.getElementById("lightboxView");
 const lightboxImg = document.getElementById("lightboxImg");
