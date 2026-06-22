@@ -57,6 +57,19 @@ const clean = (value, maxLength = 1000) => {
     return value.trim().slice(0, maxLength);
 };
 
+const parseBody = (body) => {
+    if (!body) return {};
+    if (typeof body === "string") {
+        const normalized = body.replace(/^\uFEFF/, "").trim();
+        return normalized ? JSON.parse(normalized) : {};
+    }
+    if (Buffer.isBuffer(body)) {
+        const normalized = body.toString("utf8").replace(/^\uFEFF/, "").trim();
+        return normalized ? JSON.parse(normalized) : {};
+    }
+    return body;
+};
+
 const getClientIp = (request) => {
     const forwardedFor = request.headers["x-forwarded-for"];
     if (typeof forwardedFor === "string" && forwardedFor) {
@@ -113,7 +126,7 @@ export default async function handler(request, response) {
         }
 
         step = "body";
-        const body = typeof request.body === "string" ? JSON.parse(request.body || "{}") : request.body || {};
+        const body = parseBody(request.body);
 
         step = "honeypot";
         if (clean(body.company, 200)) {
