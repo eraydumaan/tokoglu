@@ -73,6 +73,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 300);
 });
 
+const quoteForm = document.querySelector(".quote-form");
+
+if (quoteForm) {
+    const statusEl = quoteForm.querySelector("[data-form-status]");
+    const submitButton = quoteForm.querySelector("[type='submit']");
+
+    quoteForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(quoteForm);
+        const payload = Object.fromEntries(formData.entries());
+
+        if (statusEl) {
+            statusEl.textContent = "Form gönderiliyor...";
+            statusEl.dataset.state = "loading";
+        }
+
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Gönderiliyor...";
+        }
+
+        try {
+            const response = await fetch(quoteForm.action, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                throw new Error(result.message || "Form gönderilemedi. Lütfen tekrar deneyin.");
+            }
+
+            quoteForm.reset();
+            if (statusEl) {
+                statusEl.textContent = "Talebiniz alındı. En kısa sürede sizinle iletişime geçeceğiz.";
+                statusEl.dataset.state = "success";
+            }
+        } catch (error) {
+            if (statusEl) {
+                statusEl.textContent = error.message || "Form gönderilemedi. Lütfen telefon veya WhatsApp üzerinden ulaşın.";
+                statusEl.dataset.state = "error";
+            }
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = "Formu Gönder";
+            }
+        }
+    });
+}
+
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector("header nav");
 

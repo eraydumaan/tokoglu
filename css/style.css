@@ -838,6 +838,33 @@ section {
     align-self: flex-start;
 }
 
+.quote-submit-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.form-honeypot {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.form-status {
+    min-height: 1.4em;
+    margin: -8px 0 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.form-status[data-state="success"] {
+    color: #9fd8a8;
+}
+
+.form-status[data-state="error"] {
+    color: #ffb1a8;
+}
+
 .contact-info-block {
     display: flex;
     flex-direction: column;
