@@ -1,8 +1,42 @@
+import https from "node:https";
+
 const json = (response, statusCode, body) => {
     response.statusCode = statusCode;
     response.setHeader("Content-Type", "application/json; charset=utf-8");
     response.end(JSON.stringify(body));
 };
+
+const postJson = (url, apiKey, payload) => new Promise((resolve, reject) => {
+    const parsedUrl = new URL(url);
+    const data = JSON.stringify(payload);
+    const request = https.request({
+        hostname: parsedUrl.hostname,
+        path: `${parsedUrl.pathname}${parsedUrl.search}`,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+            "Content-Length": Buffer.byteLength(data)
+        }
+    }, (res) => {
+        let body = "";
+        res.setEncoding("utf8");
+        res.on("data", (chunk) => {
+            body += chunk;
+        });
+        res.on("end", () => {
+            resolve({
+                ok: res.statusCode >= 200 && res.statusCode < 300,
+                status: res.statusCode,
+                body
+            });
+        });
+    });
+
+    request.on("error", reject);
+    request.write(data);
+    request.end();
+});
 
 const rateLimitStore = new Map();
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
@@ -111,19 +145,12 @@ export default async function handler(request, response) {
             message
         ].join("\n");
 
-        const resendResponse = await fetch("https://api.resend.com/emails", {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${resendApiKey}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                from,
-                to,
-                subject,
-                text,
-                reply_to: to
-            })
+        const resendResponse = await postJson("https://api.resend.com/emails", resendApiKey, {
+            from,
+            to,
+            subject,
+            text,
+            reply_to: to
         });
 
         if (!resendResponse.ok) {
