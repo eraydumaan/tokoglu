@@ -2,9 +2,44 @@ const json = (response, statusCode, body) => {
     response.status(statusCode).json(body);
 };
 
+const rateLimitStore = new Map();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX = 5;
+const CONTACT_TO = "eraydumaan57@gmail.com";
+const configuredOrigins = (process.env.ALLOWED_ORIGINS || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+const allowedOrigins = new Set([
+    "https://tokogluahsap.com",
+    "https://www.tokogluahsap.com",
+    ...configuredOrigins
+]);
+
 const clean = (value, maxLength = 1000) => {
     if (typeof value !== "string") return "";
     return value.trim().slice(0, maxLength);
+};
+
+const getClientIp = (request) => {
+    const forwardedFor = request.headers["x-forwarded-for"];
+    if (typeof forwardedFor === "string" && forwardedFor) {
+        return forwardedFor.split(",")[0].trim();
+    }
+    return request.socket?.remoteAddress || "unknown";
+};
+
+const isRateLimited = (key) => {
+    const now = Date.now();
+    const entry = rateLimitStore.get(key);
+
+    if (!entry || now - entry.startedAt > RATE_LIMIT_WINDOW_MS) {
+        rateLimitStore.set(key, { count: 1, startedAt: now });
+        return false;
+    }
+
+    entry.count += 1;
+    return entry.count > RATE_LIMIT_MAX;
 };
 
 const projectLabels = {
@@ -18,6 +53,21 @@ const projectLabels = {
 export default async function handler(request, response) {
     if (request.method !== "POST") {
         return json(response, 405, { message: "Sadece POST istekleri kabul edilir." });
+    }
+
+    const origin = request.headers.origin;
+    if (origin && !allowedOrigins.has(origin)) {
+        return json(response, 403, { message: "Bu kaynaktan form gönderimi kabul edilmez." });
+    }
+
+    const contentType = request.headers["content-type"] || "";
+    if (!contentType.includes("application/json")) {
+        return json(response, 415, { message: "Geçersiz istek türü." });
+    }
+
+    const ip = getClientIp(request);
+    if (isRateLimited(ip)) {
+        return json(response, 429, { message: "Çok fazla deneme yapıldı. Lütfen biraz sonra tekrar deneyin." });
     }
 
     const body = request.body || {};
@@ -38,7 +88,7 @@ export default async function handler(request, response) {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    const to = process.env.CONTACT_TO || "info@tokogluahsap.com";
+    const to = CONTACT_TO;
     const from = process.env.CONTACT_FROM || "Tokoğlu Ahşap <onboarding@resend.dev>";
 
     if (!resendApiKey) {

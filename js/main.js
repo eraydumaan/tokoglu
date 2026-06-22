@@ -13,6 +13,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+function initAnalytics() {
+    const analyticsMeta = document.querySelector('meta[name="google-analytics-id"]');
+    const measurementId = (import.meta.env.VITE_GA_MEASUREMENT_ID || analyticsMeta?.getAttribute("content") || "").trim();
+
+    if (!measurementId || !measurementId.startsWith("G-")) {
+        return;
+    }
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag() {
+        window.dataLayer.push(arguments);
+    };
+
+    window.gtag("js", new Date());
+    window.gtag("config", measurementId, {
+        anonymize_ip: true,
+        send_page_view: true
+    });
+}
+
 function optimizeImageLoading() {
     document.querySelectorAll("img").forEach((img, index) => {
         img.decoding = "async";
@@ -55,6 +80,7 @@ function fixImageFallbacks() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    initAnalytics();
     optimizeImageLoading();
     fixImageFallbacks();
     // Set BA container backgrounds from img src as a robust fallback

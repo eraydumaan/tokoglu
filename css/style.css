@@ -908,7 +908,7 @@ section {
     width: 100%;
     height: 100%;
     border: none;
-    filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(100%);
+    filter: grayscale(0.2) contrast(1.05);
 }
 
 .insta-grid {
@@ -1014,6 +1014,19 @@ section {
     justify-content: center;
     box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
     transition: var(--transition);
+}
+
+.wa-icon {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1;
 }
 
 .wa-tooltip {
