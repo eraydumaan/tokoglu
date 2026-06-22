@@ -87,32 +87,40 @@ const projectLabels = {
 };
 
 export default async function handler(request, response) {
+    let step = "start";
     try {
+        step = "method";
         if (request.method !== "POST") {
             return json(response, 405, { message: "Sadece POST istekleri kabul edilir." });
         }
 
+        step = "origin";
         const origin = request.headers.origin;
         if (origin && !allowedOrigins.has(origin)) {
             return json(response, 403, { message: "Bu kaynaktan form gönderimi kabul edilmez." });
         }
 
+        step = "content-type";
         const contentType = request.headers["content-type"] || "";
         if (!contentType.includes("application/json")) {
             return json(response, 415, { message: "Geçersiz istek türü." });
         }
 
+        step = "rate-limit";
         const ip = getClientIp(request);
         if (isRateLimited(ip)) {
             return json(response, 429, { message: "Çok fazla deneme yapıldı. Lütfen biraz sonra tekrar deneyin." });
         }
 
+        step = "body";
         const body = typeof request.body === "string" ? JSON.parse(request.body || "{}") : request.body || {};
 
+        step = "honeypot";
         if (clean(body.company, 200)) {
             return json(response, 200, { message: "Talebiniz alındı." });
         }
 
+        step = "fields";
         const name = clean(body.name, 120);
         const phone = clean(body.phone, 60);
         const city = clean(body.city, 120);
@@ -124,6 +132,7 @@ export default async function handler(request, response) {
             return json(response, 400, { message: "Lütfen tüm zorunlu alanları doldurun." });
         }
 
+        step = "env";
         const resendApiKey = process.env.RESEND_API_KEY;
         const to = CONTACT_TO;
         const from = process.env.CONTACT_FROM || "Tokoğlu Ahşap <onboarding@resend.dev>";
@@ -132,6 +141,7 @@ export default async function handler(request, response) {
             return json(response, 500, { message: "Mail servisi henüz yapılandırılmadı." });
         }
 
+        step = "message";
         const subject = `Yeni teklif formu: ${name}`;
         const text = [
             "Yeni teklif formu gönderildi.",
@@ -145,6 +155,7 @@ export default async function handler(request, response) {
             message
         ].join("\n");
 
+        step = "resend";
         const resendResponse = await postJson("https://api.resend.com/emails", resendApiKey, {
             from,
             to,
@@ -159,6 +170,6 @@ export default async function handler(request, response) {
 
         return json(response, 200, { message: "Talebiniz alındı." });
     } catch {
-        return json(response, 500, { message: "Form işlenemedi. Lütfen daha sonra tekrar deneyin." });
+        return json(response, 500, { message: `Form işlenemedi (${step}). Lütfen daha sonra tekrar deneyin.` });
     }
 }
