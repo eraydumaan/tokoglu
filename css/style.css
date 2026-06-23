@@ -1066,23 +1066,11 @@ section {
 }
 
 .insta-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(7, 8, 10, 0.8);
-    opacity: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-    font-size: 1.2rem;
-    transition: var(--transition);
+    display: none;
 }
 
 .insta-item:hover .insta-overlay {
-    opacity: 1;
+    display: none;
 }
 
 .insta-item:hover img {
@@ -1153,12 +1141,12 @@ section {
     place-items: center;
     width: 34px;
     height: 34px;
-    border: 2px solid currentColor;
-    border-radius: 50%;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    line-height: 1;
+    line-height: 0;
+}
+
+.wa-icon svg {
+    width: 22px;
+    height: 22px;
 }
 
 .wa-tooltip {
@@ -1675,15 +1663,7 @@ footer {
     }
 
     .insta-overlay {
-        top: 10px;
-        right: 10px;
-        left: auto;
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        background: rgba(7, 8, 10, 0.76);
-        opacity: 1;
-        font-size: 0.95rem;
+        display: none;
     }
 
     .lightbox-content {
@@ -1708,41 +1688,57 @@ footer {
     }
 
     .sticky-wa-minimal {
-        bottom: 10px;
-        left: 12px;
-        width: 44px;
-        height: 44px;
-        box-shadow: 0 8px 18px rgba(37, 211, 102, 0.28);
+        bottom: 11px;
+        left: 14px;
+        width: 40px;
+        height: 40px;
+        box-shadow: 0 6px 14px rgba(37, 211, 102, 0.26);
     }
 
     .floating-action-modern {
-        left: 68px;
-        right: 12px;
-        bottom: 10px;
-        height: 44px;
-        max-width: none;
-        padding: 0 6px 0 16px;
-        border-radius: 22px;
-        justify-content: center;
-        gap: 10px;
-        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.42);
+        left: auto;
+        right: 10px;
+        bottom: 11px;
+        height: 40px;
+        width: 40px;
+        max-width: calc(100vw - 28px);
+        padding: 0 5px;
+        border-radius: 20px 0 0 20px;
+        justify-content: flex-start;
+        gap: 9px;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
+        transform: translateX(0);
     }
 
     .cta-text-slider {
         height: 18px;
+        width: 0;
+        opacity: 0;
+        transition: width 0.32s var(--bezier), opacity 0.24s ease;
     }
 
     .cta-text,
     .cta-text-hover {
         line-height: 18px;
-        font-size: 0.68rem;
-        letter-spacing: 1.2px;
+        font-size: 0.63rem;
+        letter-spacing: 1px;
     }
 
     .cta-icon-box {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
         flex: 0 0 auto;
+    }
+
+    .floating-action-modern.is-open {
+        width: 190px;
+        padding-left: 16px;
+        border-radius: 20px;
+    }
+
+    .floating-action-modern.is-open .cta-text-slider {
+        width: 116px;
+        opacity: 1;
     }
 
     .ref-row {
@@ -1842,14 +1838,14 @@ footer {
     }
 
     .floating-action-modern {
-        left: 68px;
+        left: auto;
         right: 12px;
         bottom: 10px;
     }
 
     .floating-action-modern .cta-text,
     .floating-action-modern .cta-text-hover {
-        font-size: 0.66rem;
+        font-size: 0.62rem;
         white-space: nowrap;
     }
 
@@ -1890,14 +1886,18 @@ footer {
     }
 
     .sticky-wa-minimal {
-        width: 42px;
-        height: 42px;
+        width: 38px;
+        height: 38px;
     }
 
     .wa-icon {
-        width: 28px;
-        height: 28px;
-        font-size: 0.66rem;
+        width: 26px;
+        height: 26px;
+    }
+
+    .wa-icon svg {
+        width: 20px;
+        height: 20px;
     }
 
     .floating-action-modern,
@@ -1906,8 +1906,18 @@ footer {
     }
 
     .floating-action-modern {
-        left: 62px;
-        padding-left: 13px;
+        left: auto;
+        right: 12px;
+        padding-left: 5px;
+    }
+
+    .floating-action-modern.is-open {
+        width: 178px;
+        padding-left: 14px;
+    }
+
+    .floating-action-modern.is-open .cta-text-slider {
+        width: 108px;
     }
 
     .cta-text,

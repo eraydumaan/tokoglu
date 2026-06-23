@@ -157,6 +157,7 @@ if (quoteForm) {
 
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector("header nav");
+const floatingAction = document.querySelector(".floating-action-modern");
 
 if (menuToggle && siteNav) {
     const closeMenu = () => {
@@ -177,6 +178,31 @@ if (menuToggle && siteNav) {
 
     siteNav.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", closeMenu);
+    });
+}
+
+if (floatingAction) {
+    let floatingActionTimer;
+
+    floatingAction.addEventListener("click", (event) => {
+        if (!window.matchMedia("(max-width: 768px)").matches) {
+            return;
+        }
+
+        if (!floatingAction.classList.contains("is-open")) {
+            event.preventDefault();
+            floatingAction.classList.add("is-open");
+            clearTimeout(floatingActionTimer);
+            floatingActionTimer = setTimeout(() => {
+                floatingAction.classList.remove("is-open");
+            }, 2600);
+            return;
+        }
+
+        clearTimeout(floatingActionTimer);
+        setTimeout(() => {
+            floatingAction.classList.remove("is-open");
+        }, 450);
     });
 }
 
