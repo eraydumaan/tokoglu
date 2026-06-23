@@ -1030,10 +1030,12 @@ section {
 }
 
 .map-layer {
+    position: relative;
     padding: 0;
     height: 450px;
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    overflow: hidden;
 }
 
 .map-layer iframe {
@@ -1041,6 +1043,13 @@ section {
     height: 100%;
     border: none;
     filter: grayscale(0.2) contrast(1.05);
+}
+
+.map-click-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    cursor: pointer;
 }
 
 .insta-grid {
