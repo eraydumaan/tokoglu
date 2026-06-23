@@ -1043,11 +1043,13 @@ section {
     height: 100%;
     border: none;
     filter: grayscale(0.2) contrast(1.05);
+    pointer-events: none;
 }
 
 .map-click-layer {
     position: absolute;
     inset: 0;
+    display: block;
     z-index: 2;
     cursor: pointer;
 }
