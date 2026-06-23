@@ -296,9 +296,22 @@ document.querySelectorAll(".showcase .gallery-filters").forEach((filterGroup) =>
     const section = filterGroup.closest("section");
     const items = section ? section.querySelectorAll(".bento-item, .insta-item") : [];
     const grid = section ? section.querySelector(".bento-grid, .insta-grid") : null;
+    const categoryByPath = {
+        "/mutfak": "mutfak",
+        "/ofis": "ofis",
+        "/gardiroop": "yatak-dolap",
+        "/tv-unitesi": "tv-salon",
+        "/banyo": "wc-banyo",
+        "/atolye": "atolye"
+    };
 
     filterGroup.querySelectorAll(".filter-node").forEach((filterButton) => {
-        filterButton.addEventListener("click", () => {
+        filterButton.addEventListener("click", (event) => {
+            const targetUrl = filterButton.dataset.url;
+            if (event.isTrusted && targetUrl) {
+                history.pushState({ galleryCategory: filterButton.dataset.target }, "", targetUrl);
+            }
+
             const currentActive = filterGroup.querySelector(".filter-node.active");
             if (currentActive) {
                 currentActive.classList.remove("active");
@@ -336,7 +349,12 @@ document.querySelectorAll(".showcase .gallery-filters").forEach((filterGroup) =>
         });
     });
 
-    filterGroup.querySelector(".filter-node.active")?.click();
+    const initialCategory = categoryByPath[window.location.pathname];
+    const initialButton = initialCategory
+        ? filterGroup.querySelector(`.filter-node[data-target="${initialCategory}"]`)
+        : filterGroup.querySelector(".filter-node.active");
+
+    initialButton?.click();
 });
 
 const stepItems = document.querySelectorAll(".step-item");

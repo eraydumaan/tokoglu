@@ -1,6 +1,14 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/mutfak", "destination": "/" },
+    { "source": "/ofis", "destination": "/" },
+    { "source": "/gardiroop", "destination": "/" },
+    { "source": "/tv-unitesi", "destination": "/" },
+    { "source": "/banyo", "destination": "/" },
+    { "source": "/atolye", "destination": "/" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
