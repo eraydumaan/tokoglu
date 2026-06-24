@@ -14,9 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initAnalytics() {
+    if (window.gtag && window.dataLayer) {
+        return;
+    }
+
     const analyticsMeta = document.querySelector('meta[name="google-analytics-id"]');
     const envMeasurementId = import.meta.env?.VITE_GA_MEASUREMENT_ID;
-    const measurementId = (envMeasurementId || analyticsMeta?.getAttribute("content") || "G-NERK95CQGV").trim();
+    const measurementId = (envMeasurementId || analyticsMeta?.getAttribute("content") || "G-JBH9RQM00Q").trim();
 
     if (!measurementId || !measurementId.startsWith("G-")) {
         return;
