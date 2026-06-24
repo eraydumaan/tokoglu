@@ -20,7 +20,7 @@ function initAnalytics() {
 
     const analyticsMeta = document.querySelector('meta[name="google-analytics-id"]');
     const envMeasurementId = import.meta.env?.VITE_GA_MEASUREMENT_ID;
-    const measurementId = (envMeasurementId || analyticsMeta?.getAttribute("content") || "G-JBH9RQM00Q").trim();
+    const measurementId = (envMeasurementId || analyticsMeta?.getAttribute("content") || "G-L2S9V1HPL1").trim();
 
     if (!measurementId || !measurementId.startsWith("G-")) {
         return;
