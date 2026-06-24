@@ -15,7 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initAnalytics() {
     const analyticsMeta = document.querySelector('meta[name="google-analytics-id"]');
-    const measurementId = (import.meta.env.VITE_GA_MEASUREMENT_ID || analyticsMeta?.getAttribute("content") || "G-JBH9RQM00Q").trim();
+    const envMeasurementId = import.meta.env?.VITE_GA_MEASUREMENT_ID;
+    const measurementId = (envMeasurementId || analyticsMeta?.getAttribute("content") || "G-NERK95CQGV").trim();
 
     if (!measurementId || !measurementId.startsWith("G-")) {
         return;
