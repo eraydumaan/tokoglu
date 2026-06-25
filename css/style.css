@@ -1752,6 +1752,12 @@ footer {
         opacity: 1;
     }
 
+    .floating-action-modern:not(.is-open):hover .cta-icon-box {
+        background: var(--bg-dark);
+        color: var(--text-pure);
+        transform: none;
+    }
+
     .ref-row {
         display: grid;
         grid-template-columns: 1fr;

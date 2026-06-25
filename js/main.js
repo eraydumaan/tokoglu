@@ -188,26 +188,28 @@ if (menuToggle && siteNav) {
 
 if (floatingAction) {
     let floatingActionTimer;
+    const closeFloatingAction = (delay = 450) => {
+        clearTimeout(floatingActionTimer);
+        floatingActionTimer = setTimeout(() => {
+            floatingAction.classList.remove("is-open");
+        }, delay);
+    };
 
-    floatingAction.addEventListener("click", (event) => {
+    floatingAction.addEventListener("pointerdown", () => {
         if (!window.matchMedia("(max-width: 768px)").matches) {
             return;
         }
 
-        if (!floatingAction.classList.contains("is-open")) {
-            event.preventDefault();
-            floatingAction.classList.add("is-open");
-            clearTimeout(floatingActionTimer);
-            floatingActionTimer = setTimeout(() => {
-                floatingAction.classList.remove("is-open");
-            }, 2600);
+        floatingAction.classList.add("is-open");
+        closeFloatingAction(2600);
+    });
+
+    floatingAction.addEventListener("click", () => {
+        if (!window.matchMedia("(max-width: 768px)").matches) {
             return;
         }
 
-        clearTimeout(floatingActionTimer);
-        setTimeout(() => {
-            floatingAction.classList.remove("is-open");
-        }, 450);
+        closeFloatingAction(450);
     });
 }
 
@@ -330,7 +332,7 @@ document.querySelectorAll(".showcase .gallery-filters").forEach((filterGroup) =>
     const categoryByPath = {
         "/mutfak": "mutfak",
         "/ofis": "ofis",
-        "/gardiroop": "yatak-dolap",
+        "/gardirop": "yatak-dolap",
         "/tv-unitesi": "tv-salon",
         "/banyo": "wc-banyo",
         "/atolye": "atolye"

@@ -4,6 +4,7 @@
   "rewrites": [
     { "source": "/mutfak", "destination": "/" },
     { "source": "/ofis", "destination": "/" },
+    { "source": "/gardirop", "destination": "/" },
     { "source": "/gardiroop", "destination": "/" },
     { "source": "/tv-unitesi", "destination": "/" },
     { "source": "/banyo", "destination": "/" },
