@@ -1,11 +1,14 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/gardiroop", "destination": "/gardirop", "permanent": true },
+    { "source": "/gardiroop/", "destination": "/gardirop/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/mutfak", "destination": "/" },
     { "source": "/ofis", "destination": "/" },
     { "source": "/gardirop", "destination": "/" },
-    { "source": "/gardiroop", "destination": "/" },
     { "source": "/tv-unitesi", "destination": "/" },
     { "source": "/banyo", "destination": "/" },
     { "source": "/atolye", "destination": "/" }
