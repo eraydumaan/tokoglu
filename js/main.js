@@ -163,6 +163,38 @@ if (quoteForm) {
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector("header nav");
 const floatingAction = document.querySelector(".floating-action-modern");
+const socialLauncher = document.querySelector(".social-launcher");
+
+if (socialLauncher) {
+    const socialToggle = socialLauncher.querySelector(".social-launcher-toggle");
+    const socialMenu = socialLauncher.querySelector(".social-launcher-menu");
+
+    const setSocialLauncherState = (isOpen) => {
+        socialLauncher.classList.toggle("is-open", isOpen);
+        socialToggle.setAttribute("aria-expanded", String(isOpen));
+        socialToggle.setAttribute("aria-label", isOpen ? "İletişim kanallarını kapat" : "İletişim kanallarını aç");
+        socialMenu.setAttribute("aria-hidden", String(!isOpen));
+    };
+
+    socialToggle.addEventListener("click", () => {
+        setSocialLauncherState(!socialLauncher.classList.contains("is-open"));
+    });
+
+    socialMenu.addEventListener("click", () => setSocialLauncherState(false));
+
+    document.addEventListener("click", (event) => {
+        if (!socialLauncher.contains(event.target)) {
+            setSocialLauncherState(false);
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            setSocialLauncherState(false);
+            socialToggle.focus();
+        }
+    });
+}
 
 if (menuToggle && siteNav) {
     const closeMenu = () => {

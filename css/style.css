@@ -1130,61 +1130,100 @@ section {
     cursor: pointer;
 }
 
-.sticky-wa-minimal {
+.social-launcher {
     position: fixed;
     bottom: 40px;
     left: 40px;
-    background: #25d366;
-    color: #fff;
+    z-index: 999;
+}
+
+.social-launcher-toggle {
     width: 52px;
     height: 52px;
+    padding: 0;
+    border: 0;
     border-radius: 50%;
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
+    background: #25d366;
+    color: #fff;
+    cursor: pointer;
     box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
     transition: var(--transition);
 }
 
-.wa-icon {
-    display: grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
-    line-height: 0;
+.social-launcher-toggle svg,
+.social-launcher-link svg {
+    width: 23px;
+    height: 23px;
+    fill: currentColor;
 }
 
-.wa-icon svg {
-    width: 22px;
-    height: 22px;
+.social-launcher-close {
+    display: none;
+    font-size: 31px;
+    font-weight: 300;
+    line-height: 1;
 }
 
-.wa-tooltip {
+.social-launcher-menu {
     position: absolute;
-    left: 65px;
-    background: #101216;
-    color: #fff;
-    white-space: nowrap;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    letter-spacing: 0.5px;
+    left: 0;
+    bottom: 64px;
+    display: grid;
+    gap: 9px;
     opacity: 0;
-    transform: translateX(-10px);
+    visibility: hidden;
+    transform: translateY(12px) scale(0.96);
+    transform-origin: left bottom;
     pointer-events: none;
     transition: var(--transition);
-    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.sticky-wa-minimal:hover {
+.social-launcher-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: max-content;
+    min-width: 145px;
+    padding: 10px 15px 10px 12px;
+    border-radius: 24px;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    transition: transform 180ms ease, filter 180ms ease;
+}
+
+.social-launcher-link:hover {
+    transform: translateX(4px);
+    filter: brightness(1.08);
+}
+
+.social-launcher-link.is-whatsapp { background: #25d366; }
+.social-launcher-link.is-instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+.social-launcher-link.is-tiktok { background: #111; }
+
+.social-launcher.is-open .social-launcher-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.social-launcher.is-open .social-launcher-toggle svg { display: none; }
+.social-launcher.is-open .social-launcher-close { display: block; }
+
+.social-launcher-toggle:hover {
     transform: scale(1.08);
     background: #20ba5a;
 }
 
-.sticky-wa-minimal:hover .wa-tooltip {
-    opacity: 1;
-    transform: translateX(0);
+.social-launcher-toggle:focus-visible,
+.social-launcher-link:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
 }
 
 .floating-action-modern {
@@ -1378,9 +1417,12 @@ footer {
         min-height: 380px;
     }
 
-    .sticky-wa-minimal {
+    .social-launcher {
         bottom: 20px;
         left: 20px;
+    }
+
+    .social-launcher-toggle {
         width: 44px;
         height: 44px;
     }
@@ -1694,13 +1736,12 @@ footer {
         gap: 12px;
     }
 
-    .wa-tooltip {
-        display: none;
-    }
-
-    .sticky-wa-minimal {
+    .social-launcher {
         bottom: 11px;
         left: 14px;
+    }
+
+    .social-launcher-toggle {
         width: 40px;
         height: 40px;
         box-shadow: 0 6px 14px rgba(37, 211, 102, 0.26);
@@ -1849,7 +1890,7 @@ footer {
         grid-template-columns: 1fr 1fr;
     }
 
-    .sticky-wa-minimal {
+    .social-launcher {
         bottom: 10px;
         left: 12px;
     }
@@ -1902,17 +1943,12 @@ footer {
         padding-bottom: 64px;
     }
 
-    .sticky-wa-minimal {
+    .social-launcher-toggle {
         width: 38px;
         height: 38px;
     }
 
-    .wa-icon {
-        width: 26px;
-        height: 26px;
-    }
-
-    .wa-icon svg {
+    .social-launcher-toggle svg {
         width: 20px;
         height: 20px;
     }
