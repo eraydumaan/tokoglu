@@ -1747,6 +1747,28 @@ footer {
         box-shadow: 0 6px 14px rgba(37, 211, 102, 0.26);
     }
 
+    .social-launcher-menu {
+        bottom: 54px;
+        gap: 8px;
+    }
+
+    .social-launcher-link {
+        justify-content: center;
+        width: 42px;
+        min-width: 0;
+        height: 42px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .social-launcher-link span {
+        display: none;
+    }
+
+    .social-launcher-link:hover {
+        transform: scale(1.06);
+    }
+
     .floating-action-modern {
         left: auto;
         right: 10px;
