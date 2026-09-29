@@ -55,7 +55,7 @@ function optimizeImageLoading() {
     });
 }
 
-// Fix image loading when filenames contain Turkish characters vs ASCII aliases.
+// Some image files use ASCII aliases for Turkish characters.
 function fixImageFallbacks() {
     const map = { 'ö':'o','Ö':'O','ü':'u','Ü':'U','ş':'s','Ş':'S','ı':'i','İ':'I','ğ':'g','Ğ':'G','ç':'c','Ç':'C' };
     const normalize = (s) => s.split('').map(ch => map[ch] || ch).join('');
@@ -63,7 +63,7 @@ function fixImageFallbacks() {
     document.querySelectorAll('img').forEach((img) => {
         const trySwap = () => {
             try {
-                if (img.naturalWidth && img.naturalWidth > 0) return; // already loaded
+                if (img.naturalWidth && img.naturalWidth > 0) return;
             } catch (e) {}
             const src = img.getAttribute('src');
             if (!src) return;
@@ -72,14 +72,13 @@ function fixImageFallbacks() {
             const altFile = normalize(file);
             if (altFile === file) return;
             const altSrc = parts.concat([altFile]).join('/');
-            // Check altSrc exists before swapping
             fetch(altSrc, { method: 'HEAD' }).then(res => {
                 if (res.ok) img.src = altSrc;
             }).catch(() => {});
         };
 
         img.addEventListener('error', trySwap);
-        // in case image already failed to load earlier, check after short delay
+        // Catch failures that occurred before the error listener was attached.
         setTimeout(trySwap, 400);
     });
 }
@@ -88,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnalytics();
     optimizeImageLoading();
     fixImageFallbacks();
-    // Set BA container backgrounds from img src as a robust fallback
     setTimeout(() => {
         document.querySelectorAll('.ba-img').forEach(parent => {
             const img = parent.querySelector('img');
