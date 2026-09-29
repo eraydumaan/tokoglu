@@ -3,6 +3,8 @@ import https from "node:https";
 const json = (response, statusCode, body) => {
     response.statusCode = statusCode;
     response.setHeader("Content-Type", "application/json; charset=utf-8");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("X-Content-Type-Options", "nosniff");
     response.end(JSON.stringify(body));
 };
 
@@ -19,21 +21,19 @@ const postJson = (url, apiKey, payload) => new Promise((resolve, reject) => {
             "Content-Length": Buffer.byteLength(data)
         }
     }, (res) => {
-        let body = "";
-        res.setEncoding("utf8");
-        res.on("data", (chunk) => {
-            body += chunk;
-        });
+        res.on("error", reject);
+        res.resume();
         res.on("end", () => {
             resolve({
                 ok: res.statusCode >= 200 && res.statusCode < 300,
-                status: res.statusCode,
-                body
+                status: res.statusCode
             });
         });
     });
 
     request.on("error", reject);
+    const deadline = setTimeout(() => request.destroy(new Error("Email request timed out")), 8000);
+    request.on("close", () => clearTimeout(deadline));
     request.write(data);
     request.end();
 });
@@ -41,6 +41,8 @@ const postJson = (url, apiKey, payload) => new Promise((resolve, reject) => {
 const rateLimitStore = new Map();
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
 const RATE_LIMIT_MAX = 5;
+const MAX_BODY_BYTES = 16 * 1024;
+const MAX_RATE_LIMIT_KEYS = 10000;
 const CONTACT_TO = "eraydumaan57@gmail.com";
 const configuredOrigins = (process.env.ALLOWED_ORIGINS || "")
     .split(",")
@@ -72,7 +74,7 @@ const parseBody = (body) => {
 
 const getClientIp = (request) => {
     const forwardedFor = request.headers["x-forwarded-for"];
-    if (typeof forwardedFor === "string" && forwardedFor) {
+    if (process.env.VERCEL === "1" && typeof forwardedFor === "string" && forwardedFor) {
         return forwardedFor.split(",")[0].trim();
     }
     return request.socket?.remoteAddress || "unknown";
@@ -80,9 +82,14 @@ const getClientIp = (request) => {
 
 const isRateLimited = (key) => {
     const now = Date.now();
+    // Best-effort per-instance protection; not a distributed rate limiter.
+    for (const [ip, value] of rateLimitStore) {
+        if (now - value.startedAt >= RATE_LIMIT_WINDOW_MS) rateLimitStore.delete(ip);
+    }
     const entry = rateLimitStore.get(key);
 
     if (!entry || now - entry.startedAt > RATE_LIMIT_WINDOW_MS) {
+        if (rateLimitStore.size >= MAX_RATE_LIMIT_KEYS) return true;
         rateLimitStore.set(key, { count: 1, startedAt: now });
         return false;
     }
@@ -102,28 +109,57 @@ const projectLabels = {
 export default async function handler(request, response) {
     try {
         if (request.method !== "POST") {
+            response.setHeader("Allow", "POST");
             return json(response, 405, { message: "Sadece POST istekleri kabul edilir." });
         }
 
         const origin = request.headers.origin;
-        if (origin && !allowedOrigins.has(origin)) {
+        if (typeof origin !== "string" || !allowedOrigins.has(origin)) {
             return json(response, 403, { message: "Bu kaynaktan form gönderimi kabul edilmez." });
         }
 
         const contentType = request.headers["content-type"] || "";
-        if (!contentType.includes("application/json")) {
+        if (typeof contentType !== "string" || contentType.split(";")[0].trim().toLowerCase() !== "application/json") {
             return json(response, 415, { message: "Geçersiz istek türü." });
         }
 
         const ip = getClientIp(request);
         if (isRateLimited(ip)) {
+            response.setHeader("Retry-After", "60");
             return json(response, 429, { message: "Çok fazla deneme yapıldı. Lütfen biraz sonra tekrar deneyin." });
         }
 
-        const body = parseBody(request.body);
+        const rawBody = request.body;
+        const bodyBytes = Buffer.isBuffer(rawBody) ? rawBody.length
+            : Buffer.byteLength(typeof rawBody === "string" ? rawBody : JSON.stringify(rawBody ?? {}));
+        if (bodyBytes > MAX_BODY_BYTES || Number(request.headers["content-length"]) > MAX_BODY_BYTES) {
+            return json(response, 413, { message: "Form içeriği çok büyük." });
+        }
+        let body;
+        try {
+            body = parseBody(rawBody);
+        } catch {
+            return json(response, 400, { message: "Geçersiz JSON içeriği." });
+        }
+        if (!body || typeof body !== "object" || Array.isArray(body)) {
+            return json(response, 400, { message: "Geçersiz form içeriği." });
+        }
 
         if (clean(body.company, 200)) {
             return json(response, 200, { message: "Talebiniz alındı." });
+        }
+
+        const limits = { name: 120, phone: 60, city: 120, projectType: 60, message: 2000 };
+        for (const [field, limit] of Object.entries(limits)) {
+            const value = body[field];
+            if (typeof value !== "string" || !value.trim() || value.length > limit ||
+                /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(value) ||
+                (field !== "message" && /[\r\n]/.test(value))) {
+                return json(response, 400, { message: "Lütfen form alanlarını kontrol edin." });
+            }
+        }
+        if (!Object.hasOwn(projectLabels, body.projectType.trim())) {
+            return json(response, 400, { message: "Geçersiz proje türü." });
         }
 
         const name = clean(body.name, 120);
